@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>道具/法宝 - 哆啦A梦</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="item.css">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-center">
+                <a href="index.html" class="nav-title">Doraemon</a>
+            </div>
+            <div class="nav-right">
+                <button class="hamburger" aria-label="菜单">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        <!-- 导航菜单 -->
+        <div class="nav-menu" id="navMenu">
+            <div class="nav-menu-content">
+                <a href="character.html" class="nav-menu-link"><span class="nav-en">CHARACTER</span> 人物</a>
+                <a href="item.html" class="nav-menu-link"><span class="nav-en">ITEM</span> 道具/法宝</a>
+                <a href="music.html" class="nav-menu-link"><span class="nav-en">MUSIC</span> 书籍</a>
+                <a href="publication.html" class="nav-menu-link"><span class="nav-en">PUBLICATION</span> 出版物</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <main class="main-content item-main">
+        <!-- 总览界面 -->
+        <div id="overviewView" class="view-container">
+            <div class="view-header">
+                <h1>道具总览</h1>
+                <div class="filter-controls">
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="">所有类别</option>
+                    </select>
+                    <input type="text" id="searchInput" class="search-input" placeholder="搜索道具名称...">
+                </div>
+            </div>
+            <div class="gadgets-container">
+                <div id="gadgetsGrid" class="gadgets-grid">
+                    <!-- 道具卡片将通过 JavaScript 动态生成 -->
+                </div>
+                <div id="loadMoreBtn" class="load-more-btn">加载更多</div>
+            </div>
+        </div>
+
+        <!-- 详情界面 -->
+        <div id="detailView" class="view-container hidden">
+            <button id="backButton" class="back-button">← 返回总览</button>
+            <div class="gadget-detail" id="gadgetDetail">
+                <!-- 详情内容将通过 JavaScript 动态生成 -->
+            </div>
+        </div>
+    </main>
+
+    <!-- 引入数据 -->
+    <script src="gadgets-data.js"></script>
+    <!-- 引入 Web Component -->
+    <script src="gadget-card.js"></script>
+    <!-- 引入通用脚本 -->
+    <script src="script.js"></script>
+    <!-- 引入道具页面脚本 -->
+    <script src="item.js"></script>
+</body>
+
+</html>
+
