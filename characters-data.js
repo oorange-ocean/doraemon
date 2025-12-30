@@ -4,8 +4,8 @@ const charactersData = [
         id: 'doraemon',
         icon: 'images/icon/doraemon_icon.png',
         cover: 'images/cover/doraemon.jpg',
-        brief: '来自22世纪的猫型育儿机器人，拥有四次元口袋。',
-        detail: '',
+        brief: '来自22世纪的猫型育儿机器人',
+        detail: `来自22世纪的蓝色猫型机器人，为了改变大雄命运而来，能从四次元百宝袋装在里面拿出各种奇妙道具。漫画版和动画版的初登场都在第一回。喜欢吃铜锣烧。弱点是害怕老鼠。常被人以为是狸猫，引起哆啦A梦的不满。\n\n外表原是黄色，因为失去原生的耳朵（被机器鼠咬掉），后来成了蓝色的原因有两个设定：《哆啦A梦百科》提及是被机械老鼠吃掉耳朵后而吓成蓝色；《2112年哆啦A梦的诞生》则是耳朵不见又被哆啦咪子取笑，之后难过地到海边，本想拿出元气之素喝提振精神，却误喝下悲剧之素，结果难过大哭三天，把外层的漆都哭掉，显现底下原本的底色蓝色。与他相对的是机器猫表扬大会上的优等生帕瓦A梦，目前在首相家服务。\n\n在机器猫工厂是公认最后一名，原因是一次打雷把哆啦A梦的一颗螺丝打掉。后因世修不小心触碰电视拍卖的购买按钮，使哆啦A梦有了雇主。并前往大雄家改变未来。`,
         photos: [],
         status: {
             height: '129.3cm',
@@ -20,7 +20,7 @@ const charactersData = [
         id: 'nobita',
         icon: 'images/icon/nobita_icon.png',
         cover: 'images/cover/nobita.jpg',
-        brief: '故事主角，成绩差但心地善良，是哆啦A梦的好朋友。',
+        brief: '成绩差但心地善良，是哆啦A梦的好朋友。',
         detail: '',
         photos: [],
         status: {
