@@ -59,5 +59,45 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+    // 回到顶部功能
+    initBackToTop();
 });
+
+// 回到顶部功能
+function initBackToTop() {
+    // 创建回到顶部按钮
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.className = 'back-to-top';
+    backToTopBtn.setAttribute('aria-label', '回到顶部');
+    document.body.appendChild(backToTopBtn);
+
+    // 监听滚动事件
+    let ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            window.requestAnimationFrame(function () {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // 当滚动超过300px时显示按钮
+                if (scrollTop > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+                
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // 点击按钮回到顶部
+    backToTopBtn.addEventListener('click', function () {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
 

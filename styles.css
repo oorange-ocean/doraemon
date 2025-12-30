@@ -415,6 +415,60 @@ body {
     }
 }
 
+/* 回到顶部按钮 */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, var(--secondary-blue), var(--accent-blue));
+}
+
+.back-to-top:active {
+    transform: translateY(-2px);
+}
+
+.back-to-top::before {
+    content: '↑';
+    font-weight: bold;
+}
+
+/* 响应式设计 - 回到顶部按钮 */
+@media (max-width: 768px) {
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1.3rem;
+    }
+}
+
 /* 打印样式 */
 @media print {
     .navbar {
@@ -428,5 +482,9 @@ body {
     body {
         background-image: none;
         background-color: white;
+    }
+
+    .back-to-top {
+        display: none;
     }
 }
