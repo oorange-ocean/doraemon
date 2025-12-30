@@ -87,10 +87,11 @@ body {
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 2rem;
-    height: 2rem;
+    height: 1.5rem;
     transition: transform 0.3s ease;
+    position: relative;
 }
 
 .hamburger span {
@@ -100,10 +101,118 @@ body {
     background-color: var(--secondary-blue);
     border-radius: 2px;
     transition: all 0.3s ease;
+    transform-origin: center;
+    position: absolute;
+    left: 0;
+}
+
+.hamburger span:nth-child(1) {
+    top: 0;
+}
+
+.hamburger span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger span:nth-child(3) {
+    bottom: 0;
 }
 
 .hamburger:hover {
     transform: scale(1.1);
+}
+
+/* 汉堡菜单激活状态 */
+.hamburger.active span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+}
+
+.hamburger.active span:nth-child(3) {
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+/* 导航菜单样式 */
+.nav-menu {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease-out;
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-menu.active {
+    max-height: 400px;
+    transition: max-height 0.4s ease-in;
+}
+
+.nav-menu-content {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-menu-link {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: var(--secondary-blue);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(45, 181, 253, 0.2);
+    position: relative;
+    border-left: 3px solid transparent;
+}
+
+.nav-en {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-right: 0.5rem;
+}
+
+.nav-menu-link:last-child {
+    border-bottom: none;
+}
+
+.nav-menu-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background-color: var(--primary-blue);
+    transition: width 0.3s ease;
+    z-index: 0;
+}
+
+.nav-menu-link:hover {
+    background-color: rgba(45, 181, 253, 0.1);
+    color: var(--accent-blue);
+    padding-left: 2rem;
+    border-left-color: var(--primary-blue);
+}
+
+.nav-menu-link:hover::before {
+    width: 3px;
+}
+
+.nav-menu-link:active {
+    background-color: rgba(45, 181, 253, 0.2);
+    color: var(--secondary-blue);
 }
 
 /* 主内容区域 */
@@ -185,6 +294,37 @@ body {
         font-size: 1.75rem;
     }
 
+    .nav-menu-content {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu-link {
+        flex: 1;
+        min-width: 150px;
+        text-align: center;
+        border-bottom: none;
+        border-left: none;
+        border-right: 1px solid rgba(45, 181, 253, 0.2);
+        border-top: 3px solid transparent;
+    }
+
+    .nav-menu-link:last-child {
+        border-right: none;
+    }
+
+    .nav-menu-link::before {
+        display: none;
+    }
+
+    .nav-menu-link:hover {
+        padding-left: 1.5rem;
+        border-left: none;
+        border-top-color: var(--primary-blue);
+        background-color: rgba(45, 181, 253, 0.1);
+    }
+
     .main-content {
         margin-top: 70px;
         padding: 3rem 2rem;
@@ -223,6 +363,16 @@ body {
 
     .nav-title {
         font-size: 2rem;
+    }
+
+    .nav-menu-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .nav-menu-link {
+        font-size: 1.2rem;
+        padding: 1.25rem 2rem;
     }
 
     .main-content {
@@ -280,4 +430,3 @@ body {
         background-color: white;
     }
 }
-
