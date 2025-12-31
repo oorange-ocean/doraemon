@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentLyrics = [];
     let currentLyricIndex = -1;
     let updateInterval = null;
+    let currentSongId = null;
 
     // 初始化总览界面
     function initOverview() {
@@ -78,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         currentLyrics = lyrics;
         currentLyricIndex = -1;
+        currentSongId = song.id;
 
         songDetail.innerHTML = `
             <div class="song-detail-header">
@@ -122,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
 
                     <div class="player-buttons">
-                        <button class="player-btn" id="prevBtn" title="上一首" disabled>
+                        <button class="player-btn" id="prevBtn" title="上一首">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polygon points="19 20 9 12 19 4 19 20"></polygon>
                                 <line x1="5" y1="19" x2="5" y2="5"></line>
@@ -137,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <rect x="14" y="4" width="4" height="16"></rect>
                             </svg>
                         </button>
-                        <button class="player-btn" id="nextBtn" title="下一首" disabled>
+                        <button class="player-btn" id="nextBtn" title="下一首">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polygon points="5 4 15 12 5 20 5 4"></polygon>
                                 <line x1="19" y1="5" x2="19" y2="19"></line>
@@ -170,6 +172,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // 初始化播放器
         initPlayer(song);
+
+        // 添加歌词点击事件
+        setTimeout(() => {
+            const lyricLines = document.querySelectorAll('.lyric-line');
+            lyricLines.forEach((line) => {
+                line.style.cursor = 'pointer';
+                line.addEventListener('click', () => {
+                    const time = parseFloat(line.getAttribute('data-time'));
+                    if (currentAudio && !isNaN(time)) {
+                        currentAudio.currentTime = time;
+                        // 如果音频暂停，自动播放
+                        if (currentAudio.paused) {
+                            currentAudio.play();
+                            const playPauseBtn = document.getElementById('playPauseBtn');
+                            const playIcon = playPauseBtn.querySelector('.play-icon');
+                            const pauseIcon = playPauseBtn.querySelector('.pause-icon');
+                            playIcon.classList.add('hidden');
+                            pauseIcon.classList.remove('hidden');
+                            startLyricsSync();
+                        }
+                    }
+                });
+            });
+        }, 100);
     }
 
     // 初始化播放器
@@ -244,6 +270,8 @@ document.addEventListener('DOMContentLoaded', function () {
             stopLyricsSync();
             currentLyricIndex = -1;
             updateLyricsHighlight();
+            // 自动播放下一首
+            playNextSong();
         });
 
         // 进度条点击和拖拽
@@ -322,6 +350,107 @@ document.addEventListener('DOMContentLoaded', function () {
                 updateVolumeUI(0.7);
             }
         });
+
+        // 上一首按钮
+        const prevBtn = document.getElementById('prevBtn');
+        prevBtn.addEventListener('click', () => {
+            playPreviousSong();
+        });
+
+        // 下一首按钮
+        const nextBtn = document.getElementById('nextBtn');
+        nextBtn.addEventListener('click', () => {
+            playNextSong();
+        });
+
+        // 更新切歌按钮状态
+        updateNavigationButtons();
+    }
+
+    // 播放上一首
+    function playPreviousSong() {
+        if (!songsData || songsData.length === 0) return;
+        
+        const currentIndex = songsData.findIndex(s => s.id === currentSongId);
+        if (currentIndex === -1) return;
+
+        let prevIndex;
+        if (currentIndex === 0) {
+            // 如果是第一首，循环到最后一首
+            prevIndex = songsData.length - 1;
+        } else {
+            prevIndex = currentIndex - 1;
+        }
+
+        const prevSong = songsData[prevIndex];
+        if (prevSong) {
+            showDetail(prevSong.id);
+            // 自动播放
+            setTimeout(() => {
+                const audio = document.getElementById('audioPlayer');
+                if (audio) {
+                    audio.play();
+                    const playPauseBtn = document.getElementById('playPauseBtn');
+                    const playIcon = playPauseBtn.querySelector('.play-icon');
+                    const pauseIcon = playPauseBtn.querySelector('.pause-icon');
+                    if (playIcon && pauseIcon) {
+                        playIcon.classList.add('hidden');
+                        pauseIcon.classList.remove('hidden');
+                    }
+                    startLyricsSync();
+                }
+            }, 500);
+        }
+    }
+
+    // 播放下一首
+    function playNextSong() {
+        if (!songsData || songsData.length === 0) return;
+        
+        const currentIndex = songsData.findIndex(s => s.id === currentSongId);
+        if (currentIndex === -1) return;
+
+        let nextIndex;
+        if (currentIndex === songsData.length - 1) {
+            // 如果是最后一首，循环到第一首
+            nextIndex = 0;
+        } else {
+            nextIndex = currentIndex + 1;
+        }
+
+        const nextSong = songsData[nextIndex];
+        if (nextSong) {
+            showDetail(nextSong.id);
+            // 自动播放
+            setTimeout(() => {
+                const audio = document.getElementById('audioPlayer');
+                if (audio) {
+                    audio.play();
+                    const playPauseBtn = document.getElementById('playPauseBtn');
+                    const playIcon = playPauseBtn.querySelector('.play-icon');
+                    const pauseIcon = playPauseBtn.querySelector('.pause-icon');
+                    if (playIcon && pauseIcon) {
+                        playIcon.classList.add('hidden');
+                        pauseIcon.classList.remove('hidden');
+                    }
+                    startLyricsSync();
+                }
+            }, 500);
+        }
+    }
+
+    // 更新导航按钮状态（目前所有歌曲都可以切歌，所以不需要禁用）
+    function updateNavigationButtons() {
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        if (!songsData || songsData.length <= 1) {
+            if (prevBtn) prevBtn.disabled = true;
+            if (nextBtn) nextBtn.disabled = true;
+        } else {
+            if (prevBtn) prevBtn.disabled = false;
+            if (nextBtn) nextBtn.disabled = false;
+        }
     }
 
     // 开始歌词同步
