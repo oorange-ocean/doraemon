@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const current = audio.currentTime;
             const duration = audio.duration || 0;
             const progress = duration > 0 ? (current / duration) * 100 : 0;
-            
+
             currentTimeEl.textContent = formatTime(current);
             progressFill.style.width = `${progress}%`;
             progressHandle.style.left = `${progress}%`;
@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', function () {
         function updateVolumeUI(volume) {
             volumeFill.style.width = `${volume * 100}%`;
             volumeHandle.style.left = `${volume * 100}%`;
-            
+
             if (volume === 0) {
                 volumeIcon.classList.add('hidden');
                 volumeMuteIcon.classList.remove('hidden');
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 播放上一首
     function playPreviousSong() {
         if (!songsData || songsData.length === 0) return;
-        
+
         const currentIndex = songsData.findIndex(s => s.id === currentSongId);
         if (currentIndex === -1) return;
 
@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 播放下一首
     function playNextSong() {
         if (!songsData || songsData.length === 0) return;
-        
+
         const currentIndex = songsData.findIndex(s => s.id === currentSongId);
         if (currentIndex === -1) return;
 
@@ -443,7 +443,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateNavigationButtons() {
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        
+
         if (!songsData || songsData.length <= 1) {
             if (prevBtn) prevBtn.disabled = true;
             if (nextBtn) nextBtn.disabled = true;
@@ -456,7 +456,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 开始歌词同步
     function startLyricsSync() {
         if (updateInterval) return;
-        
+
         updateInterval = setInterval(() => {
             if (currentAudio && !currentAudio.paused) {
                 updateLyricsHighlight();
@@ -481,7 +481,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (newIndex !== currentLyricIndex) {
             currentLyricIndex = newIndex;
-            
+
             const lyricsList = document.getElementById('lyricsList');
             if (!lyricsList) return;
 
