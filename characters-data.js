@@ -4,7 +4,7 @@ const charactersData = [
         id: 'doraemon',
         icon: 'images/icon/doraemon_icon.png',
         cover: 'images/cover/doraemon.jpg',
-        brief: '来自22世纪的猫型育儿机器人',
+        brief: '22世纪的猫型机器人',
         detail: `来自22世纪的蓝色猫型机器人，为了改变大雄命运而来，能从四次元百宝袋装在里面拿出各种奇妙道具。漫画版和动画版的初登场都在第一回。喜欢吃铜锣烧。弱点是害怕老鼠。常被人以为是狸猫，引起哆啦A梦的不满。\n\n外表原是黄色，因为失去原生的耳朵（被机器鼠咬掉），后来成了蓝色的原因有两个设定：《哆啦A梦百科》提及是被机械老鼠吃掉耳朵后而吓成蓝色；《2112年哆啦A梦的诞生》则是耳朵不见又被哆啦咪子取笑，之后难过地到海边，本想拿出元气之素喝提振精神，却误喝下悲剧之素，结果难过大哭三天，把外层的漆都哭掉，显现底下原本的底色蓝色。与他相对的是机器猫表扬大会上的优等生帕瓦A梦，目前在首相家服务。\n\n在机器猫工厂是公认最后一名，原因是一次打雷把哆啦A梦的一颗螺丝打掉。后因世修不小心触碰电视拍卖的购买按钮，使哆啦A梦有了雇主。并前往大雄家改变未来。`,
         photos: [],
         status: {
@@ -36,7 +36,7 @@ const charactersData = [
         id: 'shizuka',
         icon: 'images/icon/shizuka_icon.png',
         cover: 'images/cover/shizuka.jpg',
-        brief: '大雄的青梅竹马，温柔善良，是大雄暗恋的对象。',
+        brief: '可靠的女主角',
         detail: '',
         photos: [],
         status: {
@@ -52,7 +52,7 @@ const charactersData = [
         id: 'suneo',
         icon: 'images/icon/suneo_icon.png',
         cover: 'images/cover/suneo.jpg',
-        brief: '家境富裕，喜欢炫耀，但有时也会帮助朋友。',
+        brief: '家境富裕，喜欢炫耀，但也会帮助朋友',
         detail: '',
         photos: [],
         status: {
@@ -68,7 +68,7 @@ const charactersData = [
         id: 'takeshi',
         icon: 'images/icon/takeshi_icon.png',
         cover: 'images/cover/takeshi.jpg',
-        brief: '外号胖虎，力气大但脾气暴躁，喜欢唱歌。',
+        brief: '热爱唱歌的孩子王',
         detail: '',
         photos: [],
         status: {
@@ -84,7 +84,7 @@ const charactersData = [
         id: 'dekisugi',
         icon: 'images/icon/dekisugi_icon.png',
         cover: 'images/cover/dekisugi.jpg',
-        brief: '学习成绩优秀，各方面都很出色，是大雄的竞争对手。',
+        brief: '万能优等生',
         detail: '',
         photos: [],
         status: {
@@ -100,7 +100,7 @@ const charactersData = [
         id: 'dorami',
         icon: 'images/icon/dorami_icon.png',
         cover: 'images/cover/dorami.jpg',
-        brief: '哆啦A梦的妹妹，比哥哥更优秀，拥有四次元口袋。',
+        brief: '哆啦A梦优秀的妹妹',
         detail: '',
         photos: [],
         status: {
@@ -116,7 +116,7 @@ const charactersData = [
         id: 'jaiko',
         icon: 'images/icon/jaiko_icon.png',
         cover: 'images/cover/jko.jpg',
-        brief: '胖虎的妹妹，喜欢画漫画，梦想成为漫画家。',
+        brief: '以漫画家为目标的胖虎的妹妹',
         detail: '',
         photos: [],
         status: {
@@ -132,7 +132,7 @@ const charactersData = [
         id: 'nobisuke',
         icon: 'images/icon/nobisuke_icon.png',
         cover: 'images/cover/nobisuke.jpg',
-        brief: '大雄的父亲，在公司上班，对家人很关心。',
+        brief: '心地善良的上班族',
         detail: '',
         photos: [],
         status: {
@@ -148,7 +148,7 @@ const charactersData = [
         id: 'tamako',
         icon: 'images/icon/tamako_icon.png',
         cover: 'images/cover/tamako.jpg',
-        brief: '大雄的母亲，家庭主妇，对儿子的学习很关心。',
+        brief: '生气时很可怕！',
         detail: '',
         photos: [],
         status: {
@@ -164,7 +164,7 @@ const charactersData = [
         id: 'sewashi',
         icon: 'images/icon/sewashi_icon.png',
         cover: 'images/cover/sewashi.jpg',
-        brief: '大雄的玄孙，来自22世纪，是哆啦A梦的原主人。',
+        brief: '生活在22世纪的大雄的玄孙',
         detail: '',
         photos: [],
         status: {

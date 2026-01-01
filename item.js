@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // 按排名排序（从高到低，即1-30）
         const sortedGadgets = [...gadgetsTop30Data].sort((a, b) => a.rank - b.rank);
-        
+
         // 渲染所有道具卡片
         renderGadgets(sortedGadgets);
     }
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 渲染道具卡片
     function renderGadgets(gadgets) {
         gadgetsGrid.innerHTML = '';
-        
+
         gadgets.forEach(gadget => {
             const card = document.createElement('gadget-card');
             card.setAttribute('gadget-data', JSON.stringify(gadget));
