@@ -29,6 +29,36 @@ const songsData = [
         audio: 'images/music/夢をかなえてドラえもん/mao,ひまわりキッズ - 夢をかなえてドラえもん.mp3',
         lrc: 'images/music/夢をかなえてドラえもん/夢をかなえてドラえもん - mao,ひまわりキッズ.lrc',
         duration: '03:20' // 示例时长，实际需要从音频文件获取
+    },
+    {
+        id: 'doraemon-kelly',
+        name: '哆啦A梦',
+        nameZh: '哆啦A梦',
+        artist: '陈慧琳',
+        cover: 'images/music/哆啦A梦/YZNo1o8j0zZEB6JQcbnhLA==_109951164546358533',
+        audio: 'images/music/哆啦A梦/陈慧琳 - 哆啦A梦.mp3',
+        lrc: 'images/music/哆啦A梦/哆啦A梦 - 陈慧琳.lrc',
+        duration: '03:30' // 示例时长，实际需要从音频文件获取
+    },
+    {
+        id: 'himawari-no-yakusoku',
+        name: 'ひまわりの約束',
+        nameZh: '向日葵的约定',
+        artist: '秦基博',
+        cover: 'images/music/ひまわりの約束/109951167506119842.jpg',
+        audio: 'images/music/ひまわりの約束/秦基博 - ひまわりの約束.mp3',
+        lrc: 'images/music/ひまわりの約束/ひまわりの約束 - 秦基博.lrc',
+        duration: '04:15' // 示例时长，实际需要从音频文件获取
+    },
+    {
+        id: 'paradise',
+        name: 'Paradise',
+        nameZh: 'Paradise',
+        artist: 'NiziU',
+        cover: 'images/music/paradise/109951168314407763.jpg',
+        audio: 'images/music/paradise/NiziU - Paradise.mp3',
+        lrc: 'images/music/paradise/Paradise - NiziU.lrc',
+        duration: '03:50' // 示例时长，实际需要从音频文件获取
     }
 ];
 

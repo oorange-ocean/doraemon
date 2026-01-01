@@ -1,4 +1,4 @@
-// 道具卡片 Web Component
+// 道具卡片 Web Component - TOP 30 版本
 class GadgetCard extends HTMLElement {
     constructor() {
         super();
@@ -21,22 +21,26 @@ class GadgetCard extends HTMLElement {
         const data = this.getGadgetData();
         if (!data) return;
 
+        // 确定图片格式（jpg或gif）
+        const imageExt = data.image ? data.image.split('.').pop() : 'jpg';
+        const imagePath = data.image || `images/gadget/${String(data.rank).padStart(2, '0')}.${imageExt}`;
+
         this.shadowRoot.innerHTML = `
             <style>
                 :host {
                     display: block;
                     width: 100%;
-                    max-width: 320px;
+                    max-width: 380px;
                     margin: 0.5rem;
                 }
 
                 .card {
                     position: relative;
-                    background: linear-gradient(135deg, #B8FFCD 0%, #FFFFCE 100%);
-                    border-radius: 12px;
+                    background: linear-gradient(135deg, #2DB5FD 0%, #0564F1 100%);
+                    border-radius: 20px;
                     overflow: hidden;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                    box-shadow: 0 8px 24px rgba(45, 181, 253, 0.3);
+                    transition: all 0.3s ease;
                     cursor: pointer;
                     height: 100%;
                     display: flex;
@@ -44,106 +48,128 @@ class GadgetCard extends HTMLElement {
                 }
 
                 .card:hover {
-                    transform: translateY(-3px);
-                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                    transform: translateY(-8px);
+                    box-shadow: 0 12px 32px rgba(45, 181, 253, 0.4);
                 }
 
-                .card-grid {
+                .rank-badge {
                     position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background-image: 
-                        repeating-linear-gradient(0deg, transparent, transparent 15px, #1A72C6 15px, #1A72C6 16px),
-                        repeating-linear-gradient(90deg, transparent, transparent 15px, #1A72C6 15px, #1A72C6 16px),
-                        repeating-linear-gradient(0deg, transparent, transparent 30px, #0063C1 30px, #0063C1 31px),
-                        repeating-linear-gradient(90deg, transparent, transparent 30px, #0063C1 30px, #0063C1 31px);
-                    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
-                    opacity: 0.25;
-                    pointer-events: none;
-                    border-radius: 12px;
-                }
-
-                .card-header {
-                    padding: 1rem;
-                    position: relative;
-                    z-index: 5;
-                    flex-shrink: 0;
-                }
-
-                .gadget-name {
-                    font-size: 1.1rem;
+                    top: 1rem;
+                    right: 1rem;
+                    background: linear-gradient(135deg, #602B34, #D93C37);
+                    color: #EDE1CB;
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.5rem;
                     font-weight: bold;
-                    color: #26599F;
-                    margin-bottom: 0.3rem;
-                    line-height: 1.3;
+                    z-index: 10;
+                    box-shadow: 0 4px 12px rgba(96, 43, 52, 0.4);
                 }
 
-                .gadget-name-en {
-                    font-size: 0.85rem;
-                    color: #602B34;
-                    font-style: italic;
-                    margin-bottom: 0.5rem;
-                }
-
-                .category-badge {
-                    display: inline-block;
-                    padding: 0.25rem 0.75rem;
-                    background: linear-gradient(135deg, #2DB5FD, #0564F1);
-                    color: white;
-                    border-radius: 12px;
-                    font-size: 0.75rem;
-                    font-weight: 600;
-                    margin-top: 0.5rem;
-                }
-
-                .card-body {
-                    padding: 0 1rem 1rem;
+                .card-image-container {
+                    width: 100%;
+                    height: 240px;
+                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
                     position: relative;
-                    z-index: 5;
+                }
+
+                .card-image {
+                    max-width: 100%;
+                    max-height: 100%;
+                    object-fit: contain;
+                    transition: transform 0.3s ease;
+                }
+
+                .card:hover .card-image {
+                    transform: scale(1.05);
+                }
+
+                .card-content {
+                    padding: 1.5rem;
+                    background: rgba(255, 255, 255, 0.95);
                     flex-grow: 1;
                     display: flex;
                     flex-direction: column;
                 }
 
-                .function-text {
+                .gadget-name {
+                    font-size: 1.4rem;
+                    font-weight: bold;
+                    color: #0564F1;
+                    margin-bottom: 0.5rem;
+                    line-height: 1.3;
+                }
+
+                .gadget-name-alt {
                     font-size: 0.9rem;
+                    color: #602B34;
+                    margin-bottom: 1rem;
+                    font-style: italic;
+                }
+
+                .description {
+                    font-size: 0.95rem;
                     color: #333;
-                    line-height: 1.5;
-                    margin-bottom: 0.75rem;
+                    line-height: 1.6;
                     flex-grow: 1;
                     display: -webkit-box;
-                    -webkit-line-clamp: 3;
+                    -webkit-line-clamp: 4;
                     -webkit-box-orient: vertical;
                     overflow: hidden;
                 }
 
-                .main-user {
-                    font-size: 0.8rem;
-                    color: #666;
-                    margin-top: auto;
-                    padding-top: 0.5rem;
-                    border-top: 1px solid rgba(45, 181, 253, 0.3);
+                .read-more {
+                    margin-top: 1rem;
+                    padding: 0.5rem 1rem;
+                    background: linear-gradient(135deg, #2DB5FD, #0564F1);
+                    color: white;
+                    border: none;
+                    border-radius: 12px;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    text-align: center;
                 }
 
-                .main-user-label {
-                    color: #26599F;
-                    font-weight: 600;
+                .read-more:hover {
+                    background: linear-gradient(135deg, #0564F1, #26599F);
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(5, 100, 241, 0.3);
+                }
+
+                @media (max-width: 768px) {
+                    :host {
+                        max-width: 100%;
+                    }
+
+                    .card-image-container {
+                        height: 200px;
+                    }
+
+                    .gadget-name {
+                        font-size: 1.2rem;
+                    }
                 }
             </style>
             <div class="card">
-                <div class="card-grid"></div>
-                <div class="card-header">
-                    <div class="gadget-name">${data.chinese_name}</div>
-                    <div class="gadget-name-en">${data.english_name}</div>
-                    <span class="category-badge">${this.getCategoryName(data.category)}</span>
+                <div class="rank-badge">${data.rank}</div>
+                <div class="card-image-container">
+                    <img src="${imagePath}" alt="${data.chinese_name}" class="card-image" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'color: #999; font-size: 0.9rem;\'>图片加载失败</div>';">
                 </div>
-                <div class="card-body">
-                    <div class="function-text">${data.function}</div>
-                    <div class="main-user">
-                        <span class="main-user-label">主要使用者：</span>${this.getUserDisplayName(data.main_user)}
-                    </div>
+                <div class="card-content">
+                    <div class="gadget-name">${data.chinese_name}</div>
+                    ${data.alternative_name ? `<div class="gadget-name-alt">${data.alternative_name}</div>` : ''}
+                    <div class="description">${data.description}</div>
+                    <div class="read-more">查看详情 →</div>
                 </div>
             </div>
         `;
@@ -170,67 +196,7 @@ class GadgetCard extends HTMLElement {
         }
         return null;
     }
-
-    getCategoryName(category) {
-        const categoryMap = {
-            'Transportation': '交通',
-            'Time Travel': '时光',
-            'Education': '教育',
-            'Weapon': '武器',
-            'Daily Life': '日常',
-            'Transformation': '变形',
-            'Stealth': '隐身',
-            'Animal': '动物',
-            'Power': '力量',
-            'Special': '特殊',
-            'Vintage': '复古',
-            'Survival': '生存',
-            'Entertainment': '娱乐',
-            'Technology': '科技',
-            'Food': '食物',
-            'Prank': '恶作剧',
-            'Fantasy': '奇幻',
-            'Space': '宇宙',
-            'Weather': '天气',
-            'Tool': '工具',
-            'Construction': '建筑',
-            'Medical': '医疗',
-            'Psychic': '超能力',
-            'Information': '信息',
-            'Music': '音乐',
-            'Art': '艺术',
-            'Game': '游戏',
-            'Science': '科学',
-            'Social': '社交',
-            'Festive': '节日',
-            'Emotional': '情感',
-            'Training': '训练',
-            'Finance': '金融',
-            'Meta': '元',
-            'Sensory': '感官',
-            'Sports': '运动',
-            'Toy': '玩具',
-            'Adventure': '冒险'
-        };
-        return categoryMap[category] || category;
-    }
-
-    getUserDisplayName(user) {
-        const userMap = {
-            'Nobita': '大雄',
-            'Doraemon': '哆啦A梦',
-            'Gian': '胖虎',
-            'Suneo': '小夫',
-            'Shizuka': '静香',
-            'Dorami': '哆啦美',
-            "Nobita's Dad": '大雄爸爸',
-            "Nobita's Mom": '大雄妈妈',
-            'Everyone': '所有人'
-        };
-        return userMap[user] || user;
-    }
 }
 
 // 注册 Web Component
 customElements.define('gadget-card', GadgetCard);
-

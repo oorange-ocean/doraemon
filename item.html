@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>道具 - 哆啦A梦</title>
+    <title>日本人最想要的哆啦A梦秘密道具 TOP 30 - 哆啦A梦</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="item.css">
 </head>
@@ -44,19 +44,17 @@
         <!-- 总览界面 -->
         <div id="overviewView" class="view-container">
             <div class="view-header">
-                <h1>道具总览</h1>
-                <div class="filter-controls">
-                    <select id="categoryFilter" class="filter-select">
-                        <option value="">所有类别</option>
-                    </select>
-                    <input type="text" id="searchInput" class="search-input" placeholder="搜索道具名称...">
+                <h1>日本人最想要的哆啦A梦秘密道具 TOP 30</h1>
+                <div class="subtitle">多啦A梦神奇法宝</div>
+                <div class="intro-text">
+                    哆啦A梦的道具（多啦A梦的法宝）非常多，据推算约有 2000 个，那究竟要从何看起呢？我们特别为你展示经过日本朝日电视台于 2006 年统计出的「最想要的哆啦A梦道具 TOP 30」，从这 30
+                    个道具开始一窥哆啦A梦秘密道具（多啦A梦神奇法宝）的奥秘吧！
                 </div>
             </div>
             <div class="gadgets-container">
                 <div id="gadgetsGrid" class="gadgets-grid">
                     <!-- 道具卡片将通过 JavaScript 动态生成 -->
                 </div>
-                <div id="loadMoreBtn" class="load-more-btn">加载更多</div>
             </div>
         </div>
 
@@ -70,7 +68,7 @@
     </main>
 
     <!-- 引入数据 -->
-    <script src="gadgets-data.js"></script>
+    <script src="gadgets-top30-data.js"></script>
     <!-- 引入 Web Component -->
     <script src="gadget-card.js"></script>
     <!-- 引入通用脚本 -->
