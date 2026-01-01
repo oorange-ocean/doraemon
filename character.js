@@ -60,7 +60,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     weight: '体重',
                     english_name: '英文名',
                     japanese_name: '日语名',
-                    gender: '性别'
+                    japanese_name_kana: '假名',
+                    romanized_name: '罗马字',
+                    alternative_names: '别名',
+                    maiden_name: '婚前名',
+                    old_name: '旧版名',
+                    nickname: '昵称',
+                    gender: '性别',
+                    birthday: '生日',
+                    specialty: '特长',
+                    hobbies: '爱好',
+                    dislikes: '讨厌',
+                    most_angry_moments: '最生气时刻',
+                    fears: '最害怕'
                 };
                 return `
                     <div class="status-item">
@@ -78,6 +90,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="detail-names">
                     <span class="detail-name-item">${character.status.english_name}</span>
                     <span class="detail-name-item">${character.status.japanese_name}</span>
+                    ${character.status.japanese_name_kana ? `<span class="detail-name-item">${character.status.japanese_name_kana}</span>` : ''}
+                    ${character.status.romanized_name ? `<span class="detail-name-item">${character.status.romanized_name}</span>` : ''}
                 </div>
                 <p class="detail-brief">${character.brief}</p>
             </div>
