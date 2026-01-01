@@ -67,10 +67,20 @@ body {
     color: var(--secondary-blue);
     text-decoration: none;
     transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .nav-title:hover {
     color: var(--accent-blue);
+}
+
+.nav-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
+    vertical-align: middle;
 }
 
 .nav-right {
@@ -294,6 +304,11 @@ body {
         font-size: 1.75rem;
     }
 
+    .nav-icon {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+
     .nav-menu-content {
         flex-direction: row;
         justify-content: center;
@@ -363,6 +378,11 @@ body {
 
     .nav-title {
         font-size: 2rem;
+    }
+
+    .nav-icon {
+        width: 2rem;
+        height: 2rem;
     }
 
     .nav-menu-content {
