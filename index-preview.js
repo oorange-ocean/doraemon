@@ -50,7 +50,7 @@ function generateGadgetsPreview() {
     topGadgets.forEach(gadget => {
         const card = document.createElement('div');
         card.className = 'preview-gadget-card';
-        card.onclick = () => window.location.href = 'item.html';
+        card.onclick = () => window.location.href = 'gadget.html';
         
         card.innerHTML = `
             <img src="${gadget.image}" alt="${gadget.chinese_name}" class="preview-gadget-image">
