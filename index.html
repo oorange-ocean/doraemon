@@ -57,8 +57,87 @@
                 </p>
             </div>
         </div>
+
+        <!-- 预览区域 -->
+        <div class="preview-sections">
+            <!-- 人物预览 -->
+            <section class="preview-section">
+                <div class="preview-header">
+                    <h2 class="preview-title">
+                        <span class="preview-title-en">CHARACTER</span>
+                        <span class="preview-title-cn">人物</span>
+                    </h2>
+                    <a href="character.html" class="preview-more-link">
+                        <span>查看详情 View More</span>
+                        <span class="arrow">→</span>
+                    </a>
+                </div>
+                <div class="preview-content" id="charactersPreview">
+                    <!-- 人物预览卡片将通过 JavaScript 动态生成 -->
+                </div>
+            </section>
+
+            <!-- 道具预览 -->
+            <section class="preview-section">
+                <div class="preview-header">
+                    <h2 class="preview-title">
+                        <span class="preview-title-en">ITEM</span>
+                        <span class="preview-title-cn">道具</span>
+                    </h2>
+                    <a href="item.html" class="preview-more-link">
+                        <span>查看详情 View More</span>
+                        <span class="arrow">→</span>
+                    </a>
+                </div>
+                <div class="preview-content" id="gadgetsPreview">
+                    <!-- 道具预览卡片将通过 JavaScript 动态生成 -->
+                </div>
+            </section>
+
+            <!-- 音乐预览 -->
+            <section class="preview-section">
+                <div class="preview-header">
+                    <h2 class="preview-title">
+                        <span class="preview-title-en">MUSIC</span>
+                        <span class="preview-title-cn">音乐</span>
+                    </h2>
+                    <a href="music.html" class="preview-more-link">
+                        <span>查看详情 View More</span>
+                        <span class="arrow">→</span>
+                    </a>
+                </div>
+                <div class="preview-content" id="songsPreview">
+                    <!-- 音乐预览卡片将通过 JavaScript 动态生成 -->
+                </div>
+            </section>
+
+            <!-- 剧场版电影预览 -->
+            <section class="preview-section">
+                <div class="preview-header">
+                    <h2 class="preview-title">
+                        <span class="preview-title-en">ANIME</span>
+                        <span class="preview-title-cn">剧场版电影</span>
+                    </h2>
+                    <a href="anime.html" class="preview-more-link">
+                        <span>查看详情 View More</span>
+                        <span class="arrow">→</span>
+                    </a>
+                </div>
+                <div class="preview-content" id="filmsPreview">
+                    <!-- 电影预览卡片将通过 JavaScript 动态生成 -->
+                </div>
+            </section>
+        </div>
     </main>
 
+    <!-- 引入数据 -->
+    <script src="characters-data.js"></script>
+    <script src="gadgets-top30-data.js"></script>
+    <script src="songs-data.js"></script>
+    <script src="anime-data.js"></script>
+    <!-- 引入预览脚本 -->
+    <script src="index-preview.js"></script>
+    <!-- 引入通用脚本 -->
     <script src="script.js"></script>
 </body>
 
