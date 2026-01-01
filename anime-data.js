@@ -65,14 +65,6 @@ const filmsData = [
         cover: 'images/film_cover/映画ドラえもん のび太の月面探査記.jpg'
     },
     {
-        id: 'film-009',
-        chinese_title: '哆啦A梦·大雄的喜马拉雅行进记',
-        japanese_title: 'ドラえもん のび太のヒマラヤ行進記',
-        release_date: '2018年5月24日',
-        creators: '(科普性质短片/天文馆专用)',
-        cover: 'images/film_cover/ドラえもん のび太のヒマラヤ行進記.jpg'
-    },
-    {
         id: 'film-010',
         chinese_title: '哆啦A梦：大雄的金银岛',
         japanese_title: '映画ドラえもん のび太の宝島',
@@ -87,14 +79,6 @@ const filmsData = [
         release_date: '2017年3月4日',
         creators: '高桥敦史 / 高桥敦史',
         cover: 'images/film_cover/映画ドラえもん のび太の南極カチコチ大冒険.jpg'
-    },
-    {
-        id: 'film-012',
-        chinese_title: '哆啦A梦：宇宙不可思议大探险3',
-        japanese_title: 'ドラえもん 宇宙ふしぎ大探検3',
-        release_date: '2017年',
-        creators: '(天文馆节目)',
-        cover: 'images/film_cover/ドラえもん 宇宙ふしぎ大探検3 〜地球のふしぎ〜.jpg'
     },
     {
         id: 'film-013',
