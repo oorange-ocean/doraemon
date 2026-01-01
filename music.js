@@ -521,6 +521,8 @@ document.addEventListener('DOMContentLoaded', function () {
         currentLyricIndex = -1;
 
         window.history.pushState({ view: 'overview' }, '', 'music.html');
+        // 重新初始化总览界面，确保内容被正确渲染
+        initOverview();
         overviewView.classList.remove('hidden');
         detailView.classList.add('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });

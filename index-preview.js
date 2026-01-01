@@ -26,7 +26,7 @@ function generateCharactersPreview() {
     mainCharacters.forEach(character => {
         const card = document.createElement('div');
         card.className = 'preview-character-card';
-        card.onclick = () => window.location.href = 'character.html';
+        card.onclick = () => window.location.href = `character.html?character=${character.id}`;
 
         card.innerHTML = `
             <img src="${character.icon}" alt="${character.status.chinese_name}" class="preview-character-icon">
@@ -50,6 +50,7 @@ function generateGadgetsPreview() {
     topGadgets.forEach(gadget => {
         const card = document.createElement('div');
         card.className = 'preview-gadget-card';
+        // 道具页面目前没有详情页功能，所以跳转到总览页
         card.onclick = () => window.location.href = 'gadget.html';
 
         card.innerHTML = `
@@ -72,7 +73,7 @@ function generateSongsPreview() {
     topSongs.forEach(song => {
         const card = document.createElement('div');
         card.className = 'preview-song-card';
-        card.onclick = () => window.location.href = 'music.html';
+        card.onclick = () => window.location.href = `music.html?song=${song.id}`;
 
         card.innerHTML = `
             <img src="${song.cover}" alt="${song.nameZh}" class="preview-song-cover">
@@ -95,7 +96,7 @@ function generateFilmsPreview() {
     topFilms.forEach(film => {
         const card = document.createElement('div');
         card.className = 'preview-film-card';
-        card.onclick = () => window.location.href = 'anime.html';
+        card.onclick = () => window.location.href = `anime.html?film=${film.id}`;
 
         card.innerHTML = `
             <img src="${film.cover}" alt="${film.chinese_title}" class="preview-film-cover">
