@@ -41,7 +41,6 @@ class GadgetCard extends HTMLElement {
                     overflow: hidden;
                     box-shadow: 0 8px 24px rgba(45, 181, 253, 0.3);
                     transition: all 0.3s ease;
-                    cursor: pointer;
                     height: 100%;
                     display: flex;
                     flex-direction: column;
@@ -120,30 +119,6 @@ class GadgetCard extends HTMLElement {
                     color: #333;
                     line-height: 1.6;
                     flex-grow: 1;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 4;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                }
-
-                .read-more {
-                    margin-top: 1rem;
-                    padding: 0.5rem 1rem;
-                    background: linear-gradient(135deg, #2DB5FD, #0564F1);
-                    color: white;
-                    border: none;
-                    border-radius: 12px;
-                    font-size: 0.9rem;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    text-align: center;
-                }
-
-                .read-more:hover {
-                    background: linear-gradient(135deg, #0564F1, #26599F);
-                    transform: translateY(-2px);
-                    box-shadow: 0 4px 12px rgba(5, 100, 241, 0.3);
                 }
 
                 @media (max-width: 768px) {
@@ -169,20 +144,9 @@ class GadgetCard extends HTMLElement {
                     <div class="gadget-name">${data.chinese_name}</div>
                     ${data.alternative_name ? `<div class="gadget-name-alt">${data.alternative_name}</div>` : ''}
                     <div class="description">${data.description}</div>
-                    <div class="read-more">查看详情 →</div>
                 </div>
             </div>
         `;
-
-        // 添加点击事件
-        const card = this.shadowRoot.querySelector('.card');
-        card.addEventListener('click', () => {
-            this.dispatchEvent(new CustomEvent('gadget-click', {
-                detail: { gadgetId: data.id },
-                bubbles: true,
-                composed: true
-            }));
-        });
     }
 
     getGadgetData() {
