@@ -290,6 +290,108 @@ body {
     line-height: 1.8;
 }
 
+/* 可展开区域样式 */
+.expandable-section {
+    margin-bottom: 2rem;
+}
+
+.expandable-content {
+    max-height: 4.5em; /* 大约3行文字的高度 */
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.4s ease-out;
+}
+
+.expandable-content.expanded {
+    max-height: 2000px;
+    transition: max-height 0.5s ease-in;
+}
+
+.expandable-content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.95));
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.expandable-content.expanded::after {
+    opacity: 0;
+}
+
+.expandable-text {
+    margin-bottom: 1rem;
+    text-align: justify;
+    line-height: 1.8;
+}
+
+.expand-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(45, 181, 253, 0.3);
+}
+
+.expand-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(45, 181, 253, 0.4);
+    background: linear-gradient(135deg, var(--secondary-blue), var(--accent-blue));
+}
+
+.expand-toggle:active {
+    transform: translateY(0);
+}
+
+.expand-icon {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.expand-toggle.expanded .expand-icon {
+    transform: rotate(180deg);
+}
+
+.expand-toggle .expand-text,
+.expand-toggle .collapse-text {
+    display: inline-block;
+}
+
+.expand-toggle.expanded .expand-text {
+    display: none;
+}
+
+.expand-toggle.expanded .collapse-text {
+    display: inline-block;
+}
+
+/* 响应式设计 - 可展开区域 */
+@media (max-width: 767px) {
+    .expandable-content {
+        max-height: 4em; /* 移动端显示约2-3行 */
+    }
+
+    .expand-toggle {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
 /* 响应式设计 - 平板设备 */
 @media (min-width: 768px) {
     html {

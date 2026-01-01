@@ -62,7 +62,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 回到顶部功能
     initBackToTop();
+
+    // 可展开内容功能
+    initExpandableContent();
 });
+
+// 可展开内容功能
+function initExpandableContent() {
+    const expandButtons = document.querySelectorAll('.expand-toggle');
+    
+    expandButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const content = document.getElementById(targetId);
+            
+            if (content) {
+                const isExpanded = content.classList.contains('expanded');
+                
+                if (isExpanded) {
+                    // 收起
+                    content.classList.remove('expanded');
+                    this.classList.remove('expanded');
+                } else {
+                    // 展开
+                    content.classList.add('expanded');
+                    this.classList.add('expanded');
+                }
+            }
+        });
+    });
+}
 
 // 回到顶部功能
 function initBackToTop() {
