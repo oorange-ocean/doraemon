@@ -297,6 +297,13 @@ song-card {
     background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
     color: white;
     box-shadow: 0 4px 12px rgba(5, 100, 241, 0.3);
+    flex-shrink: 0
+}
+
+/* 只有播放图标需要这个微调 */
+.play-icon {
+    transform: translateX(3px);
+    /* 向右微调，抵消视觉偏差 */
 }
 
 .play-pause-btn:hover {
@@ -441,4 +448,3 @@ song-card {
         font-size: 1.2rem;
     }
 }
-
