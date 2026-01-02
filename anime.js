@@ -64,6 +64,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 渲染详情内容
     function renderDetail(film) {
+        // 构建剧情简介部分（如果有简介）
+        const synopsisSection = film.synopsis ? `
+            <div class="detail-section">
+                <h3>剧情简介</h3>
+                <div class="detail-text">${film.synopsis}</div>
+            </div>
+        ` : '';
+
         // 构建视频部分（如果有视频URL）
         const videoSection = film.video_url ? `
             <div class="detail-section">
@@ -102,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     </div>
                 </div>
+                ${synopsisSection}
                 ${videoSection}
             </div>
         `;
