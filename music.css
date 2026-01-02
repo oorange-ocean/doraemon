@@ -41,15 +41,11 @@
 }
 
 .songs-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-    .songs-list {
-        gap: 2rem;
-    }
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    padding: 2rem 0;
 }
 
 .player-container {
@@ -433,6 +429,10 @@
     .main-controls {
         gap: 3rem;
     }
+
+    .songs-list {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
 }
 
 @media (min-width: 1024px) {
@@ -465,6 +465,10 @@
     .cover-wrapper-desktop {
         width: 300px;
         height: 300px;
+    }
+
+    .view-header h1 {
+        font-size: 3rem;
     }
 
     .desktop-left {
