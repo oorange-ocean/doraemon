@@ -84,11 +84,12 @@ document.addEventListener('DOMContentLoaded', function () {
         songDetail.innerHTML = `
             <div class="song-detail-header">
                 <div class="song-cover-container">
-                    <img src="${song.cover}" alt="${song.nameZh || song.name}" class="song-cover-image">
+                    <img src="${song.cover}" alt="${song.showOriginalName ? song.name : (song.nameZh || song.name)}" class="song-cover-image">
                 </div>
                 <div class="song-info-header">
-                    <h2 class="song-title">${song.nameZh || song.name}</h2>
+                    <h2 class="song-title">${song.showOriginalName ? song.name : (song.nameZh || song.name)}</h2>
                     <p class="song-artist-detail">${song.artist}</p>
+                    ${song.description ? `<p class="song-description-detail">${song.description}</p>` : ''}
                 </div>
             </div>
             

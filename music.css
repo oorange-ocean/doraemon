@@ -119,6 +119,13 @@ song-card {
     margin: 0;
 }
 
+.song-description-detail {
+    font-size: 1rem;
+    color: #86868b;
+    margin: 0.5rem 0 0 0;
+    font-style: italic;
+}
+
 /* 歌曲详情内容 */
 .song-detail-content {
     display: flex;

@@ -159,6 +159,16 @@ class SongCard extends HTMLElement {
                     text-overflow: ellipsis;
                 }
 
+                .song-description {
+                    font-size: 0.85rem;
+                    color: #a1a1a6;
+                    margin: 0;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin-top: 0.15rem;
+                }
+
                 .song-duration {
                     font-size: 0.85rem;
                     color: #86868b;
@@ -195,8 +205,9 @@ class SongCard extends HTMLElement {
                     </div>
                 </div>
                 <div class="song-info">
-                    <h3 class="song-name">${data.nameZh || data.name}</h3>
+                    <h3 class="song-name">${data.showOriginalName ? data.name : (data.nameZh || data.name)}</h3>
                     <p class="song-artist">${data.artist}</p>
+                    ${data.description ? `<p class="song-description">${data.description}</p>` : ''}
                 </div>
                 <div class="song-duration">${data.duration}</div>
             </div>

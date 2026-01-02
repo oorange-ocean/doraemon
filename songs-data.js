@@ -8,7 +8,9 @@ const songsData = [
         cover: 'images/music/ドラえもん/109951164343737340.jpg',
         audio: 'images/music/ドラえもん/星野源 - ドラえもん.mp3',
         lrc: 'images/music/ドラえもん/ドラえもん - 星野源.lrc',
-        duration: '03:45' // 示例时长，实际需要从音频文件获取
+        duration: '03:45', // 示例时长，实际需要从音频文件获取
+        description: '剧场版《哆啦A梦大雄的宝岛》主题曲',
+        showOriginalName: true // 显示日语原名以区分重名
     },
     {
         id: 'doraemon-no-uta',
@@ -32,12 +34,12 @@ const songsData = [
     },
     {
         id: 'doraemon-kelly',
-        name: '哆啦A梦',
-        nameZh: '哆啦A梦',
+        name: '哆啦A梦（国语）',
+        nameZh: '哆啦A梦（国语）',
         artist: '陈慧琳',
         cover: 'images/music/哆啦A梦/YZNo1o8j0zZEB6JQcbnhLA==_109951164546358533',
-        audio: 'images/music/哆啦A梦/陈慧琳 - 哆啦A梦.mp3',
-        lrc: 'images/music/哆啦A梦/哆啦A梦 - 陈慧琳.lrc',
+        audio: 'images/music/哆啦A梦/陈慧琳 - 哆啦A梦(国).mp3',
+        lrc: 'images/music/哆啦A梦/哆啦A梦(国) - 陈慧琳.lrc',
         duration: '03:30' // 示例时长，实际需要从音频文件获取
     },
     {
