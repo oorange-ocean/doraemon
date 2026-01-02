@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentLyricIndex = -1;
     let updateInterval = null;
     let currentSongId = null;
-    let isLyricsMode = false;
 
     let savedScrollPosition = 0;
 
@@ -73,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
         currentLyrics = lyrics;
         currentLyricIndex = -1;
         currentSongId = song.id;
-        isLyricsMode = false;
 
         const mobileCover = document.getElementById('mobileCover');
         const mobileTitle = document.getElementById('mobileTitle');
@@ -135,119 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!audio) return;
 
         currentAudio = audio;
-
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const playIcon = playPauseBtn.querySelector('.play-icon');
-        const pauseIcon = playPauseBtn.querySelector('.pause-icon');
-
-        const progressBar = document.getElementById('progressBar');
-        const progressFill = document.getElementById('progressFill');
-        const progressHandle = document.getElementById('progressHandle');
-
-        const currentTimeEl = document.getElementById('currentTime');
-        const totalTimeEl = document.getElementById('totalTime');
-
-        const toggleLyricsBtn = document.getElementById('toggleLyricsBtn');
-
-        playPauseBtn.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play();
-                playIcon.classList.add('hidden');
-                pauseIcon.classList.remove('hidden');
-                startLyricsSync();
-            } else {
-                audio.pause();
-                playIcon.classList.remove('hidden');
-                pauseIcon.classList.add('hidden');
-                stopLyricsSync();
-            }
-        });
-
-        audio.addEventListener('loadedmetadata', () => {
-            const duration = audio.duration;
-            totalTimeEl.textContent = formatTime(duration);
-        });
-
-        audio.addEventListener('timeupdate', () => {
-            const current = audio.currentTime;
-            const duration = audio.duration || 0;
-            const progress = duration > 0 ? (current / duration) * 100 : 0;
-
-            currentTimeEl.textContent = formatTime(current);
-            progressFill.style.width = `${progress}%`;
-            progressHandle.style.left = `${progress}%`;
-        });
-
-        audio.addEventListener('ended', () => {
-            playIcon.classList.remove('hidden');
-            pauseIcon.classList.add('hidden');
-            stopLyricsSync();
-            currentLyricIndex = -1;
-            updateLyricsHighlight();
-            playNextSong();
-        });
-
-        let isDragging = false;
-        const handleProgressMouseDown = (e) => {
-            isDragging = true;
-            updateProgress(e);
-        };
-        const handleProgressMouseMove = (e) => {
-            if (isDragging) {
-                updateProgress(e);
-            }
-        };
-        const handleProgressMouseUp = () => {
-            isDragging = false;
-        };
-
-        progressBar.addEventListener('mousedown', handleProgressMouseDown);
-        document.addEventListener('mousemove', handleProgressMouseMove);
-        document.addEventListener('mouseup', handleProgressMouseUp);
-
-        function updateProgress(e) {
-            const rect = progressBar.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const percent = Math.max(0, Math.min(1, x / rect.width));
-            const time = percent * (audio.duration || 0);
-            audio.currentTime = time;
-        }
-
-        const prevBtn = document.getElementById('prevBtn');
-        prevBtn.addEventListener('click', () => {
-            playPreviousSong();
-        });
-
-        const nextBtn = document.getElementById('nextBtn');
-        nextBtn.addEventListener('click', () => {
-            playNextSong();
-        });
-
-        if (toggleLyricsBtn) {
-            toggleLyricsBtn.addEventListener('click', () => {
-                toggleLyricsMode();
-            });
-        }
-
-        const playlistBtn = document.getElementById('playlistBtn');
-        if (playlistBtn) {
-            playlistBtn.addEventListener('click', () => {
-                showOverview();
-            });
-        }
-
         updateNavigationButtons();
-    }
-
-    function toggleLyricsMode() {
-        isLyricsMode = !isLyricsMode;
-        if (playerContainer) {
-            if (isLyricsMode) {
-                playerContainer.classList.add('lyrics-mode');
-            } else {
-                playerContainer.classList.remove('lyrics-mode');
-            }
-        }
     }
 
     function playPreviousSong() {
@@ -401,17 +287,108 @@ document.addEventListener('DOMContentLoaded', function () {
             updateInterval = null;
         }
 
-        isLyricsMode = false;
-        if (playerContainer) {
-            playerContainer.classList.remove('lyrics-mode');
-        }
-
         detailView.classList.add('hidden');
         overviewView.classList.remove('hidden');
 
         window.scrollTo(0, savedScrollPosition);
 
         window.history.pushState({ view: 'overview' }, '', window.location.pathname);
+    }
+
+    function initEventListeners() {
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playIcon = playPauseBtn.querySelector('.play-icon');
+        const pauseIcon = playPauseBtn.querySelector('.pause-icon');
+
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const progressHandle = document.getElementById('progressHandle');
+
+        const currentTimeEl = document.getElementById('currentTime');
+        const totalTimeEl = document.getElementById('totalTime');
+
+        const audio = document.getElementById('audioPlayer');
+
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+                startLyricsSync();
+            } else {
+                audio.pause();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+                stopLyricsSync();
+            }
+        });
+
+        audio.addEventListener('loadedmetadata', () => {
+            const duration = audio.duration;
+            totalTimeEl.textContent = formatTime(duration);
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            const current = audio.currentTime;
+            const duration = audio.duration || 0;
+            const progress = duration > 0 ? (current / duration) * 100 : 0;
+
+            currentTimeEl.textContent = formatTime(current);
+            progressFill.style.width = `${progress}%`;
+            progressHandle.style.left = `${progress}%`;
+        });
+
+        audio.addEventListener('ended', () => {
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+            stopLyricsSync();
+            currentLyricIndex = -1;
+            updateLyricsHighlight();
+            playNextSong();
+        });
+
+        let isDragging = false;
+        const handleProgressMouseDown = (e) => {
+            isDragging = true;
+            updateProgress(e);
+        };
+        const handleProgressMouseMove = (e) => {
+            if (isDragging) {
+                updateProgress(e);
+            }
+        };
+        const handleProgressMouseUp = () => {
+            isDragging = false;
+        };
+
+        progressBar.addEventListener('mousedown', handleProgressMouseDown);
+        document.addEventListener('mousemove', handleProgressMouseMove);
+        document.addEventListener('mouseup', handleProgressMouseUp);
+
+        function updateProgress(e) {
+            const rect = progressBar.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const percent = Math.max(0, Math.min(1, x / rect.width));
+            const time = percent * (audio.duration || 0);
+            audio.currentTime = time;
+        }
+
+        const prevBtn = document.getElementById('prevBtn');
+        prevBtn.addEventListener('click', () => {
+            playPreviousSong();
+        });
+
+        const nextBtn = document.getElementById('nextBtn');
+        nextBtn.addEventListener('click', () => {
+            playNextSong();
+        });
+
+        const playlistBtn = document.getElementById('playlistBtn');
+        if (playlistBtn) {
+            playlistBtn.addEventListener('click', () => {
+                showOverview();
+            });
+        }
     }
 
     window.addEventListener('popstate', (event) => {
@@ -432,4 +409,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     initOverview();
+    initEventListeners();
 });
