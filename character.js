@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 渲染详情内容
     function renderDetail(character) {
         // 排除已在 header 中显示的名字字段，避免重复
-        const excludedKeys = ['chinese_name', 'english_name', 'japanese_name', 'japanese_name_kana', 'romanized_name'];
+        const excludedKeys = ['chinese_name', 'english_name', 'japanese_name', 'japanese_name_kana'];
         const statusItems = Object.entries(character.status)
             .filter(([key]) => !excludedKeys.includes(key))
             .map(([key, value]) => {
@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     english_name: '英文名',
                     japanese_name: '日语名',
                     japanese_name_kana: '假名',
-                    romanized_name: '罗马字',
                     alternative_names: '别名',
                     maiden_name: '婚前名',
                     old_name: '旧版名',
@@ -98,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     <span class="detail-name-item">${character.status.english_name}</span>
                     <span class="detail-name-item">${character.status.japanese_name}</span>
                     ${character.status.japanese_name_kana ? `<span class="detail-name-item">${character.status.japanese_name_kana}</span>` : ''}
-                    ${character.status.romanized_name ? `<span class="detail-name-item">${character.status.romanized_name}</span>` : ''}
                 </div>
                 <p class="detail-brief">${character.brief}</p>
             </div>
