@@ -50,15 +50,16 @@ document.addEventListener('DOMContentLoaded', function () {
         // 更新 URL（不刷新页面）
         window.history.pushState({ view: 'detail', songId }, '', `?song=${songId}`);
 
-        // 渲染详情内容
-        renderDetail(song);
-
-        // 切换视图
+        // 先切换视图并清空内容，避免显示之前的内容
         overviewView.classList.add('hidden');
         detailView.classList.remove('hidden');
+        songDetail.innerHTML = ''; // 清空之前的内容
 
         // 立即滚动到顶部（无动画）
         window.scrollTo(0, 0);
+
+        // 渲染详情内容（异步）
+        renderDetail(song);
     }
 
     // 渲染详情内容
@@ -532,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function () {
         initOverview();
         overviewView.classList.remove('hidden');
         detailView.classList.add('hidden');
-        
+
         // 恢复到之前保存的滚动位置（无动画）
         // 使用 setTimeout 确保 DOM 更新完成后再滚动
         setTimeout(() => {
