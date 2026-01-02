@@ -57,9 +57,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 渲染详情内容
     function renderDetail(character) {
-        // 排除中文名，因为已经在标题中显示
+        // 排除已在 header 中显示的名字字段，避免重复
+        const excludedKeys = ['chinese_name', 'english_name', 'japanese_name', 'japanese_name_kana', 'romanized_name'];
         const statusItems = Object.entries(character.status)
-            .filter(([key]) => key !== 'chinese_name')
+            .filter(([key]) => !excludedKeys.includes(key))
             .map(([key, value]) => {
                 const labels = {
                     height: '身高',
