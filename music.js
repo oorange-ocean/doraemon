@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentSongId = null;
 
     let savedScrollPosition = 0;
+    let isChangingSong = false;
 
     function initOverview() {
         if (!songsData || !Array.isArray(songsData)) {
@@ -137,10 +138,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function playPreviousSong() {
-        if (!songsData || songsData.length === 0) return;
+        if (!songsData || songsData.length === 0 || isChangingSong) return;
+
+        isChangingSong = true;
 
         const currentIndex = songsData.findIndex(s => s.id === currentSongId);
-        if (currentIndex === -1) return;
+        if (currentIndex === -1) {
+            isChangingSong = false;
+            return;
+        }
 
         let prevIndex;
         if (currentIndex === 0) {
@@ -165,15 +171,23 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     startLyricsSync();
                 }
+                isChangingSong = false;
             }, 500);
+        } else {
+            isChangingSong = false;
         }
     }
 
     function playNextSong() {
-        if (!songsData || songsData.length === 0) return;
+        if (!songsData || songsData.length === 0 || isChangingSong) return;
+
+        isChangingSong = true;
 
         const currentIndex = songsData.findIndex(s => s.id === currentSongId);
-        if (currentIndex === -1) return;
+        if (currentIndex === -1) {
+            isChangingSong = false;
+            return;
+        }
 
         let nextIndex;
         if (currentIndex === songsData.length - 1) {
@@ -198,7 +212,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     startLyricsSync();
                 }
+                isChangingSong = false;
             }, 500);
+        } else {
+            isChangingSong = false;
         }
     }
 
