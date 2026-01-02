@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const characterDetail = document.getElementById('characterDetail');
     const backButton = document.getElementById('backButton');
 
+    // 保存总览页面的滚动位置
+    let savedScrollPosition = 0;
+
     // 初始化总览界面
     function initOverview() {
         if (!charactersData || !Array.isArray(charactersData)) {
@@ -35,6 +38,9 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        // 保存当前滚动位置
+        savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
         // 更新 URL（不刷新页面）
         window.history.pushState({ view: 'detail', characterId }, '', `?character=${characterId}`);
 
@@ -45,8 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
         overviewView.classList.add('hidden');
         detailView.classList.remove('hidden');
 
-        // 滚动到顶部
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // 立即滚动到顶部（无动画）
+        window.scrollTo(0, 0);
     }
 
     // 渲染详情内容
@@ -119,7 +125,12 @@ document.addEventListener('DOMContentLoaded', function () {
         initOverview();
         overviewView.classList.remove('hidden');
         detailView.classList.add('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // 恢复到之前保存的滚动位置（无动画）
+        // 使用 setTimeout 确保 DOM 更新完成后再滚动
+        setTimeout(() => {
+            window.scrollTo(0, savedScrollPosition);
+        }, 0);
     }
 
     // 返回按钮事件

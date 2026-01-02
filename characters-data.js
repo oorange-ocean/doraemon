@@ -20,7 +20,7 @@ const charactersData = [
         id: 'nobita',
         icon: 'images/icon/nobita_icon.png',
         cover: 'images/cover/nobita.jpg',
-        brief: '成绩差但心地善良，是哆啦A梦的好朋友。',
+        brief: '成绩差但心地善良，是哆啦A梦的好朋友',
         detail: '原作为小学4年级的学生，动画版为小学5年级。哆啦A梦负责照顾的对象。又笨又懒，功课、体育也不好，也因个性懦弱、懒惰而常受师长的责骂及同学的霸凌。但本性(心地)善良，在剧场版常有耀眼表现，也热爱大自然。擅长的项目有射击、翻花绳和快速入睡。喜欢静香。缺点经常上学迟到。',
         photos: [],
         status: {
