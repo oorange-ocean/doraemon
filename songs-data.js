@@ -40,7 +40,7 @@ const songsData = [
         nameZh: '哆啦A梦',
         artist: '陈慧琳',
         cover: 'images/music/哆啦A梦/YZNo1o8j0zZEB6JQcbnhLA==_109951164546358533',
-        audio: 'images/music/哆啦A梦/陈慧琳 - 哆啦A梦.mp3',
+        audio: 'images/music/哆啦A梦/陈慧琳 - 哆啦A梦(国).mp3',
         lrc: 'images/music/哆啦A梦/哆啦A梦(国) - 陈慧琳.lrc',
         duration: '03:30',
         description: '粤语/国语地区极具知名度的翻唱版本。这首歌改编自《哆啦A梦之歌》。陈慧琳的版本在2000年代初火遍大江南北，歌词中"人人期望可达到，我的快乐比天高"是很多华语观众的第一记忆。'

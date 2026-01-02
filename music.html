@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>音乐 - 哆啦A梦</title>
+    <link rel="icon" type="image/png" href="images/icon/doraemon_icon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="music.css">
 </head>
@@ -53,10 +54,118 @@
 
         <!-- 详情界面 -->
         <div id="detailView" class="view-container hidden">
-            <button id="backButton" class="back-button">← 返回总览</button>
-            <div class="song-detail" id="songDetail">
-                <!-- 详情内容将通过 JavaScript 动态生成 -->
+            <div class="player-container" id="playerContainer">
+                <!-- 移动端顶部歌曲信息 -->
+                <div class="mobile-header">
+                    <div class="cover-wrapper" id="coverWrapper">
+                        <img id="mobileCover" class="mobile-cover" src="" alt="">
+                    </div>
+                    <div class="song-info-mobile">
+                        <h2 id="mobileTitle" class="mobile-title"></h2>
+                        <p id="mobileArtist" class="mobile-artist"></p>
+                    </div>
+                </div>
+
+                <!-- 移动端歌词区域 -->
+                <div class="lyrics-section" id="lyricsSection">
+                    <div class="lyrics-container">
+                        <div class="lyrics-list" id="lyricsList">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 桌面端左侧区域 -->
+                <div class="desktop-left">
+                    <div class="cover-wrapper-desktop">
+                        <img id="desktopCover" class="desktop-cover" src="" alt="">
+                    </div>
+                    <div class="song-info-desktop">
+                        <h2 id="desktopTitle" class="desktop-title"></h2>
+                        <p id="desktopArtist" class="desktop-artist"></p>
+                    </div>
+                </div>
+
+                <!-- 桌面端右侧歌词区域 -->
+                <div class="desktop-right">
+                    <div class="lyrics-container-desktop">
+                        <div class="lyrics-list-desktop" id="lyricsListDesktop">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 控制区域 -->
+                <div class="controls-section">
+                    <audio id="audioPlayer" preload="metadata">
+                    </audio>
+
+                    <!-- 进度条 -->
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress-fill" id="progressFill"></div>
+                            <div class="progress-handle" id="progressHandle"></div>
+                        </div>
+                        <div class="time-display">
+                            <span id="currentTime">00:00</span>
+                            <span id="totalTime">00:00</span>
+                        </div>
+                    </div>
+
+                    <!-- 主控制按钮 -->
+                    <div class="main-controls">
+                        <button class="control-btn" id="prevBtn" title="上一首">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                                <line x1="5" y1="19" x2="5" y2="5"></line>
+                            </svg>
+                        </button>
+                        <button class="control-btn play-pause-btn" id="playPauseBtn" title="播放/暂停">
+                            <svg class="play-icon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                            <svg class="pause-icon hidden" width="32" height="32" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <rect x="6" y="4" width="4" height="16"></rect>
+                                <rect x="14" y="4" width="4" height="16"></rect>
+                            </svg>
+                        </button>
+                        <button class="control-btn" id="nextBtn" title="下一首">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                                <line x1="19" y1="5" x2="19" y2="19"></line>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- 次级控制按钮 -->
+                    <div class="secondary-controls">
+                        <button class="control-btn secondary-btn" id="toggleLyricsBtn" title="歌词">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M9 18V5l12-2v13"></path>
+                                <circle cx="6" cy="18" r="3"></circle>
+                                <circle cx="18" cy="16" r="3"></circle>
+                            </svg>
+                            <span>歌词</span>
+                        </button>
+                        <button class="control-btn secondary-btn" id="playlistBtn" title="列表">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="8" y1="6" x2="21" y2="6"></line>
+                                <line x1="8" y1="12" x2="21" y2="12"></line>
+                                <line x1="8" y1="18" x2="21" y2="18"></line>
+                                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                            </svg>
+                            <span>列表</span>
+                        </button>
+                    </div>
+
+                </div>
             </div>
+        </div>
         </div>
     </main>
 
