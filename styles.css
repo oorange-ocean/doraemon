@@ -174,7 +174,10 @@ body {
 }
 
 .nav-menu-link {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
     padding: 1rem 1.5rem;
     color: var(--secondary-blue);
     text-decoration: none;
@@ -184,13 +187,21 @@ body {
     border-bottom: 1px solid rgba(45, 181, 253, 0.2);
     position: relative;
     border-left: 3px solid transparent;
+    text-align: left;
+    width: 100%;
+    min-width: fit-content;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .nav-en {
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 0.5px;
+    display: inline;
     margin-right: 0.5rem;
+    line-height: 1.4;
 }
 
 .nav-menu-link:last-child {
@@ -212,7 +223,6 @@ body {
 .nav-menu-link:hover {
     background-color: rgba(45, 181, 253, 0.1);
     color: var(--accent-blue);
-    padding-left: 2rem;
     border-left-color: var(--primary-blue);
 }
 
@@ -296,7 +306,8 @@ body {
 }
 
 .expandable-content {
-    max-height: 4.5em; /* 大约3行文字的高度 */
+    max-height: 4.5em;
+    /* 大约3行文字的高度 */
     overflow: hidden;
     position: relative;
     transition: max-height 0.4s ease-out;
@@ -383,7 +394,8 @@ body {
 /* 响应式设计 - 可展开区域 */
 @media (max-width: 767px) {
     .expandable-content {
-        max-height: 4em; /* 移动端显示约2-3行 */
+        max-height: 4em;
+        /* 移动端显示约2-3行 */
     }
 
     .expand-toggle {
@@ -418,13 +430,25 @@ body {
     }
 
     .nav-menu-link {
-        flex: 1;
-        min-width: 150px;
+        flex: 0 1 auto;
+        min-width: fit-content;
+        width: auto;
+        max-width: 100%;
         text-align: center;
+        justify-content: center;
         border-bottom: none;
         border-left: none;
         border-right: 1px solid rgba(45, 181, 253, 0.2);
         border-top: 3px solid transparent;
+        white-space: normal;
+        padding: 1rem 1.25rem;
+        flex-direction: column;
+    }
+
+    .nav-en {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 0.25rem;
     }
 
     .nav-menu-link:last-child {
@@ -436,7 +460,6 @@ body {
     }
 
     .nav-menu-link:hover {
-        padding-left: 1.5rem;
         border-left: none;
         border-top-color: var(--primary-blue);
         background-color: rgba(45, 181, 253, 0.1);
@@ -494,7 +517,15 @@ body {
 
     .nav-menu-link {
         font-size: 1.2rem;
-        padding: 1.25rem 2rem;
+        padding: 1.25rem 1.5rem;
+        flex: 0 1 auto;
+        min-width: fit-content;
+        width: auto;
+    }
+
+    .nav-en {
+        display: block;
+        margin-bottom: 0.3rem;
     }
 
     .main-content {
