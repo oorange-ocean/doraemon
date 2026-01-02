@@ -22,7 +22,8 @@ const filmsData = [
         japanese_title: '映画ドラえもん のび太の地球交響楽',
         release_date: '2024年3月1日',
         creators: '今井一晓 / 内海照子',
-        cover: 'images/film_cover/映画ドラえもん のび太の地球交響楽.jpg'
+        cover: 'images/film_cover/映画ドラえもん のび太の地球交響楽.jpg',
+        video_url: '//player.bilibili.com/player.html?isOutside=true&aid=1953021527&bvid=BV1eC411G7kh&cid=1502475055&p=1'
     },
     {
         id: 'film-004',

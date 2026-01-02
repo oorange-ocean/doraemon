@@ -64,6 +64,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 渲染详情内容
     function renderDetail(film) {
+        // 构建视频部分（如果有视频URL）
+        const videoSection = film.video_url ? `
+            <div class="detail-section">
+                <h3>预告片</h3>
+                <div class="video-container">
+                    <iframe src="${film.video_url}" 
+                            scrolling="no" 
+                            border="0" 
+                            frameborder="no" 
+                            framespacing="0" 
+                            allowfullscreen="true"
+                            class="video-iframe">
+                    </iframe>
+                </div>
+            </div>
+        ` : '';
+
         filmDetail.innerHTML = `
             <div class="detail-header">
                 <img src="${film.cover}" alt="${film.chinese_title}" class="detail-cover" 
@@ -85,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     </div>
                 </div>
+                ${videoSection}
             </div>
         `;
     }
