@@ -40,9 +40,9 @@ class SongCard extends HTMLElement {
                     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                     cursor: pointer;
                     display: flex;
-                    align-items: center;
-                    padding: 1rem 1.25rem;
-                    gap: 1.25rem;
+                    flex-direction: column;
+                    padding: 1.5rem 1.75rem;
+                    gap: 1rem;
                     border: 1px solid rgba(45, 181, 253, 0.1);
                 }
 
@@ -55,6 +55,12 @@ class SongCard extends HTMLElement {
 
                 .card:active {
                     transform: translateY(0);
+                }
+
+                .card-top {
+                    display: flex;
+                    align-items: center;
+                    gap: 1.5rem;
                 }
 
                 .cover-container {
@@ -132,18 +138,18 @@ class SongCard extends HTMLElement {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
-                    gap: 0.25rem;
+                    gap: 0.4rem;
                 }
 
                 .song-name {
-                    font-size: 1.1rem;
+                    font-size: 1.3rem;
                     font-weight: 600;
                     color: #1d1d1f;
                     margin: 0;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
+                    line-height: 1.4;
                     transition: color 0.3s ease;
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
                 }
 
                 .card:hover .song-name {
@@ -151,31 +157,22 @@ class SongCard extends HTMLElement {
                 }
 
                 .song-artist {
-                    font-size: 0.9rem;
+                    font-size: 1rem;
                     color: #86868b;
                     margin: 0;
+                    line-height: 1.4;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
                 }
 
                 .song-description {
-                    font-size: 0.85rem;
+                    font-size: 0.95rem;
                     color: #a1a1a6;
                     margin: 0;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    margin-top: 0.15rem;
-                }
-
-                .song-duration {
-                    font-size: 0.85rem;
-                    color: #86868b;
-                    margin: 0;
-                    flex-shrink: 0;
-                    padding-left: 1rem;
-                    font-variant-numeric: tabular-nums;
+                    line-height: 1.6;
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
                 }
 
                 @media (min-width: 768px) {
@@ -184,32 +181,42 @@ class SongCard extends HTMLElement {
                         height: 100px;
                     }
 
+                    .card {
+                        padding: 1.75rem 2rem;
+                        gap: 1.25rem;
+                    }
+
+                    .card-top {
+                        gap: 1.75rem;
+                    }
+
                     .song-name {
-                        font-size: 1.2rem;
+                        font-size: 1.5rem;
                     }
 
                     .song-artist {
-                        font-size: 1rem;
+                        font-size: 1.1rem;
                     }
 
-                    .song-duration {
-                        font-size: 0.9rem;
+                    .song-description {
+                        font-size: 1rem;
                     }
                 }
             </style>
             <div class="card">
-                <div class="cover-container">
-                    <img src="${data.cover}" alt="${data.nameZh || data.name}" class="cover-image">
-                    <div class="play-overlay">
-                        <div class="play-icon"></div>
+                <div class="card-top">
+                    <div class="cover-container">
+                        <img src="${data.cover}" alt="${data.nameZh || data.name}" class="cover-image">
+                        <div class="play-overlay">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                    <div class="song-info">
+                        <h3 class="song-name">${data.showOriginalName ? data.name : (data.nameZh || data.name)}</h3>
+                        <p class="song-artist">${data.artist}</p>
                     </div>
                 </div>
-                <div class="song-info">
-                    <h3 class="song-name">${data.showOriginalName ? data.name : (data.nameZh || data.name)}</h3>
-                    <p class="song-artist">${data.artist}</p>
-                    ${data.description ? `<p class="song-description">${data.description}</p>` : ''}
-                </div>
-                <div class="song-duration">${data.duration}</div>
+                ${data.description ? `<p class="song-description">${data.description}</p>` : ''}
             </div>
         `;
 
