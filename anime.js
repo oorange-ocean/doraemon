@@ -101,21 +101,18 @@ document.addEventListener('DOMContentLoaded', function () {
                      onerror="this.src='images/bg_detail.png'; this.onerror=null;">
                 <h2 class="detail-title-cn">${film.chinese_title}</h2>
                 <div class="detail-title-jp">${film.japanese_title}</div>
-            </div>
-            <div class="detail-content">
-                <div class="detail-section">
-                    <h3>基本信息</h3>
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-label">上映时间</div>
-                            <div class="info-value release-date">${film.release_date}</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">主创信息</div>
-                            <div class="info-value">${film.creators}</div>
-                        </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">上映时间</div>
+                        <div class="info-value release-date">${film.release_date}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">主创信息</div>
+                        <div class="info-value">${film.creators}</div>
                     </div>
                 </div>
+            </div>
+            <div class="detail-content">
                 ${synopsisSection}
                 ${videoSection}
             </div>
@@ -129,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
         initOverview();
         overviewView.classList.remove('hidden');
         detailView.classList.add('hidden');
-        
+
         // 恢复到之前保存的滚动位置（无动画）
         // 使用 setTimeout 确保 DOM 更新完成后再滚动
         setTimeout(() => {
