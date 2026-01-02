@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let savedScrollPosition = 0;
     let isChangingSong = false;
+    const lyricsCache = new Map();
 
     function initOverview() {
         if (!songsData || !Array.isArray(songsData)) {
@@ -84,9 +85,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let lyrics = [];
         try {
-            const response = await fetch(song.lrc);
-            const lrcText = await response.text();
-            lyrics = LRCParser.parse(lrcText);
+            if (lyricsCache.has(song.id)) {
+                lyrics = lyricsCache.get(song.id);
+            } else {
+                const response = await fetch(song.lrc);
+                const lrcText = await response.text();
+                lyrics = LRCParser.parse(lrcText);
+                lyricsCache.set(song.id, lyrics);
+            }
         } catch (error) {
             console.error('Failed to load lyrics:', error);
         }
