@@ -61,6 +61,27 @@ document.addEventListener('DOMContentLoaded', function () {
             updateInterval = null;
         }
 
+        const mobileCover = document.getElementById('mobileCover');
+        const mobileTitle = document.getElementById('mobileTitle');
+        const mobileArtist = document.getElementById('mobileArtist');
+        const desktopCover = document.getElementById('desktopCover');
+        const desktopTitle = document.getElementById('desktopTitle');
+        const desktopArtist = document.getElementById('desktopArtist');
+        const audio = document.getElementById('audioPlayer');
+        const lyricsList = document.getElementById('lyricsList');
+        const lyricsListDesktop = document.getElementById('lyricsListDesktop');
+
+        if (mobileCover) mobileCover.src = song.cover;
+        if (mobileTitle) mobileTitle.textContent = song.showOriginalName ? song.name : (song.nameZh || song.name);
+        if (mobileArtist) mobileArtist.textContent = song.artist;
+        if (desktopCover) desktopCover.src = song.cover;
+        if (desktopTitle) desktopTitle.textContent = song.showOriginalName ? song.name : (song.nameZh || song.name);
+        if (desktopArtist) desktopArtist.textContent = song.artist;
+        if (audio) audio.src = song.audio;
+
+        if (lyricsList) lyricsList.innerHTML = '<div class="lyric-line"><div class="lyric-text">加载歌词中...</div></div>';
+        if (lyricsListDesktop) lyricsListDesktop.innerHTML = '<div class="lyric-line"><div class="lyric-text">加载歌词中...</div></div>';
+
         let lyrics = [];
         try {
             const response = await fetch(song.lrc);
@@ -73,25 +94,6 @@ document.addEventListener('DOMContentLoaded', function () {
         currentLyrics = lyrics;
         currentLyricIndex = -1;
         currentSongId = song.id;
-
-        const mobileCover = document.getElementById('mobileCover');
-        const mobileTitle = document.getElementById('mobileTitle');
-        const mobileArtist = document.getElementById('mobileArtist');
-        const desktopCover = document.getElementById('desktopCover');
-        const desktopTitle = document.getElementById('desktopTitle');
-        const desktopArtist = document.getElementById('desktopArtist');
-        const audio = document.getElementById('audioPlayer');
-
-        if (mobileCover) mobileCover.src = song.cover;
-        if (mobileTitle) mobileTitle.textContent = song.showOriginalName ? song.name : (song.nameZh || song.name);
-        if (mobileArtist) mobileArtist.textContent = song.artist;
-        if (desktopCover) desktopCover.src = song.cover;
-        if (desktopTitle) desktopTitle.textContent = song.showOriginalName ? song.name : (song.nameZh || song.name);
-        if (desktopArtist) desktopArtist.textContent = song.artist;
-        if (audio) audio.src = song.audio;
-
-        const lyricsList = document.getElementById('lyricsList');
-        const lyricsListDesktop = document.getElementById('lyricsListDesktop');
 
         const lyricsHTML = lyrics.length > 0 ? lyrics.map((lyric, index) => `
             <div class="lyric-line" data-time="${lyric.time}" data-index="${index}">
@@ -302,6 +304,14 @@ document.addEventListener('DOMContentLoaded', function () {
         if (updateInterval) {
             clearInterval(updateInterval);
             updateInterval = null;
+        }
+
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playIcon = playPauseBtn.querySelector('.play-icon');
+        const pauseIcon = playPauseBtn.querySelector('.pause-icon');
+        if (playIcon && pauseIcon) {
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
         }
 
         detailView.classList.add('hidden');
