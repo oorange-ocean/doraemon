@@ -71,7 +71,7 @@ song-card {
 .song-detail {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
-    padding: 3rem;
+    padding: 1.5rem;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
@@ -186,7 +186,7 @@ song-card {
 .player-controls {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
     padding: 2rem;
     background: rgba(255, 255, 255, 0.7);
     border-radius: 16px;
